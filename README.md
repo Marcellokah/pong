@@ -1,4 +1,3 @@
 # pong
 
-#Simple pong game
-Made in vanilla js with html canvas.
+Simple pong game, made in vanilla js with html canvas.
