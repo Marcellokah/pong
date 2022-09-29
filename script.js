@@ -1,7 +1,6 @@
 import Ball from "./ball.js"
 import Paddle from "./paddle.js"
 
-
 const ball = new Ball(document.getElementById("ball"));
 const playerPaddle = new Paddle(document.getElementById("player-paddle"));
 const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
@@ -13,7 +12,7 @@ let lastTime;
 function update(time) {
     if (lastTime != null) {
         const delta = time - lastTime;
-        ball.update(delta, [playerPaddle.rect(), computerPaddle()]);
+        ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()]);
         computerPaddle.update(delta, ball.y);
         const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"));
 
@@ -27,12 +26,12 @@ function update(time) {
 
 function isLose() {
     const rect = ball.rect();
-    return rect.bottom >= window.innerHeight || rect.top <= 0;
+    return rect.right >= window.innerWidth || rect.left <= 0;
 }
 
 function handleLose() {
     const rect = ball.rect();
-    if(rect.right >= window.innerWidth) {
+    if (rect.right >= window.innerWidth) {
         playerScoreElem.textContent = parseInt(playerScoreElem.textContent) + 1;
     } else {
         computerScoreElem.textContent = parseInt(computerScoreElem.textContent) + 1;
